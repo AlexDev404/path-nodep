@@ -21,7 +21,9 @@
 
 'use strict';
 
-
+var process = process? process: {
+  cwd: ()=>"./"
+};
 var isWindows = process.platform === 'win32';
 
 // resolves . and .. elements in a path array with directory names there
