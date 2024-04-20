@@ -23,8 +23,6 @@
 
 
 var isWindows = process.platform === 'win32';
-var util = require('util');
-
 
 // resolves . and .. elements in a path array with directory names there
 // must be no slashes or device names (c:\) in the array
@@ -144,7 +142,7 @@ win32.resolve = function() {
     }
 
     // Skip empty and invalid entries
-    if (!util.isString(path)) {
+    if (typeof path !== 'string') {
       throw new TypeError('Arguments to path.resolve must be strings');
     } else if (!path) {
       continue;
@@ -231,7 +229,7 @@ win32.join = function() {
   var paths = [];
   for (var i = 0; i < arguments.length; i++) {
     var arg = arguments[i];
-    if (!util.isString(arg)) {
+    if (typeof path !== 'string') {
       throw new TypeError('Arguments to path.join must be strings');
     }
     if (arg) {
@@ -306,7 +304,7 @@ win32.relative = function(from, to) {
 
 win32._makeLong = function(path) {
   // Note: this will *probably* throw somewhere.
-  if (!util.isString(path))
+  if (typeof path !== 'string')
     return path;
 
   if (!path) {
@@ -364,7 +362,7 @@ win32.extname = function(path) {
 
 
 win32.format = function(pathObject) {
-  if (!util.isObject(pathObject)) {
+  if (typeof pathObject !== 'object') {
     throw new TypeError(
         "Parameter 'pathObject' must be an object, not " + typeof pathObject
     );
@@ -372,7 +370,7 @@ win32.format = function(pathObject) {
 
   var root = pathObject.root || '';
 
-  if (!util.isString(root)) {
+  if (typeof root !== 'string') {
     throw new TypeError(
         "'pathObject.root' must be a string or undefined, not " +
         typeof pathObject.root
@@ -392,7 +390,7 @@ win32.format = function(pathObject) {
 
 
 win32.parse = function(pathString) {
-  if (!util.isString(pathString)) {
+  if (typeof pathString !== 'string') {
     throw new TypeError(
         "Parameter 'pathString' must be a string, not " + typeof pathString
     );
@@ -437,7 +435,7 @@ posix.resolve = function() {
     var path = (i >= 0) ? arguments[i] : process.cwd();
 
     // Skip empty and invalid entries
-    if (!util.isString(path)) {
+    if (typeof path !== 'string') {
       throw new TypeError('Arguments to path.resolve must be strings');
     } else if (!path) {
       continue;
@@ -486,7 +484,7 @@ posix.join = function() {
   var path = '';
   for (var i = 0; i < arguments.length; i++) {
     var segment = arguments[i];
-    if (!util.isString(segment)) {
+    if (typeof segment !== 'string') {
       throw new TypeError('Arguments to path.join must be strings');
     }
     if (segment) {
@@ -570,7 +568,7 @@ posix.extname = function(path) {
 
 
 posix.format = function(pathObject) {
-  if (!util.isObject(pathObject)) {
+  if (typeof pathObject !== 'object') {
     throw new TypeError(
         "Parameter 'pathObject' must be an object, not " + typeof pathObject
     );
@@ -578,7 +576,7 @@ posix.format = function(pathObject) {
 
   var root = pathObject.root || '';
 
-  if (!util.isString(root)) {
+  if (typeof root !== 'string') {
     throw new TypeError(
         "'pathObject.root' must be a string or undefined, not " +
         typeof pathObject.root
@@ -592,7 +590,7 @@ posix.format = function(pathObject) {
 
 
 posix.parse = function(pathString) {
-  if (!util.isString(pathString)) {
+  if (typeof pathString !== 'string') {
     throw new TypeError(
         "Parameter 'pathString' must be a string, not " + typeof pathString
     );
