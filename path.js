@@ -229,7 +229,7 @@ win32.join = function() {
   var paths = [];
   for (var i = 0; i < arguments.length; i++) {
     var arg = arguments[i];
-    if (typeof path !== 'string') {
+    if (typeof arg !== 'string') {
       throw new TypeError('Arguments to path.join must be strings');
     }
     if (arg) {
